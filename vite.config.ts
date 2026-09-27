@@ -12,6 +12,7 @@ export default defineConfig(() => {
       },
     },
     server: {
+      allowedHosts: ["agri-yield-predictor-4xjc.onrender.com"],
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
