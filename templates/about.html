@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Project - Agri Yield Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <span class="brand-icon">🌱</span>
+                <span class="brand-name">Agri Yield Predictor</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/predict">Predict Yield</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/about" class="active">About Project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container py-8">
+        <div class="page-header">
+            <h1>Project Architecture & Documentation</h1>
+            <p>Comprehensive technical details for college project viva, evaluation, and documentation.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="content-block">
+                <h2>1. Problem Statement</h2>
+                <p>
+                    Crop yield unpredictability directly affects farmers' income, food security, and supply chain logistics. Traditional agricultural advice relies on coarse regional averages that do not consider farm-specific soil test reports (pH, N, P, K) or localized microclimatic parameters (temperature, humidity, precipitation, soil moisture).
+                </p>
+                <p>
+                    <strong>Agri Yield Predictor</strong> applies supervised machine learning regression to model non-linear physiological interactions between soil chemistry, moisture, temperature, and crop biological potential.
+                </p>
+            </div>
+
+            <div class="content-block">
+                <h2>2. System Architecture & Tech Stack</h2>
+                <ul class="tech-list">
+                    <li><strong>Backend Framework:</strong> Python Flask (REST APIs, Jinja2 rendering, request validation)</li>
+                    <li><strong>Machine Learning:</strong> Scikit-learn (Linear Regression, Random Forest, Gradient Boosting)</li>
+                    <li><strong>Database:</strong> SQLite (persistent local storage for prediction logs in <code>database/predictions.db</code>)</li>
+                    <li><strong>Frontend UI:</strong> Responsive, accessible, farmer-friendly interface with Tailwind CSS / bespoke clean styling</li>
+                    <li><strong>Data Preprocessing:</strong> One-hot categorical encoding, outlier filtering, feature normalization</li>
+                </ul>
+            </div>
+
+            <div class="content-block">
+                <h2>3. Machine Learning Evaluation Metrics</h2>
+                <p>The models are evaluated using three primary regression metrics on the 20% unseen test split:</p>
+                <div class="formula-cards">
+                    <div class="formula-card">
+                        <h4>R² Score (Coefficient of Determination)</h4>
+                        <code>R² = 1 - (SS_res / SS_tot)</code>
+                        <p>Measures the proportion of yield variance explained by the features (Target: > 0.90 for ensemble models).</p>
+                    </div>
+                    <div class="formula-card">
+                        <h4>MAE (Mean Absolute Error)</h4>
+                        <code>MAE = (1/n) * Σ |y_actual - y_pred|</code>
+                        <p>Provides the average absolute error magnitude directly in tons per hectare.</p>
+                    </div>
+                    <div class="formula-card">
+                        <h4>RMSE (Root Mean Squared Error)</h4>
+                        <code>RMSE = sqrt((1/n) * Σ (y_actual - y_pred)²)</code>
+                        <p>Penalizes larger outliers more heavily, indicating prediction stability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>4. Dataset Schema & Requirements</h2>
+                <p>The system expects a CSV file at <code>data/dataset.csv</code> with the following standard columns:</p>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Column Name</th>
+                                <th>Data Type</th>
+                                <th>Typical Range</th>
+                                <th>Agronomical Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>crop</code></td><td>String</td><td>10 crops</td><td>Botanical crop name</td></tr>
+                            <tr><td><code>soil_ph</code></td><td>Float</td><td>4.5 - 8.5</td><td>Soil acidity / alkalinity</td></tr>
+                            <tr><td><code>nitrogen</code></td><td>Float</td><td>20 - 250 kg/ha</td><td>Nitrogen macronutrient</td></tr>
+                            <tr><td><code>phosphorus</code></td><td>Float</td><td>10 - 150 kg/ha</td><td>Phosphorus macronutrient</td></tr>
+                            <tr><td><code>potassium</code></td><td>Float</td><td>10 - 250 kg/ha</td><td>Potassium macronutrient</td></tr>
+                            <tr><td><code>temperature</code></td><td>Float</td><td>10 - 45 °C</td><td>Average ambient temperature</td></tr>
+                            <tr><td><code>humidity</code></td><td>Float</td><td>20 - 95 %</td><td>Relative atmospheric humidity</td></tr>
+                            <tr><td><code>rainfall</code></td><td>Float</td><td>200 - 3500 mm</td><td>Precipitation depth</td></tr>
+                            <tr><td><code>soil_moisture</code></td><td>Float</td><td>10 - 90 %</td><td>Volumetric water content</td></tr>
+                            <tr><td><code>yield_tons_per_ha</code></td><td>Float</td><td>0.5 - 120 t/ha</td><td>Observed harvest yield (target)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2>5. Academic Project Viva Q&A</h2>
+                <div class="faq-item">
+                    <h4>Q: Why did you choose Gradient Boosting over simple Linear Regression?</h4>
+                    <p><strong>A:</strong> Agricultural yield exhibits non-linear response curves (e.g., Liebig's Law of the Minimum and excessive rainfall causing waterlogging or nutrient leaching). Linear regression cannot capture quadratic or threshold response functions without manual feature engineering, whereas tree-based ensembles (Random Forest, Gradient Boosting) naturally partition feature space and model complex interactions.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: How is total production derived?</h4>
+                    <p><strong>A:</strong> Total production is calculated as: <code>Total Production (tons) = Predicted Yield (tons/ha) × Land Area (ha)</code>.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Q: How does the system handle database storage?</h4>
+                    <p><strong>A:</strong> Each prediction query is recorded with a timestamp, crop, area, input parameters, prediction score, and model name into an SQLite database file (<code>database/predictions.db</code>), ensuring auditability and history inspection.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2026 Agri Yield Predictor · Final-Year College Project</p>
+        </div>
+    </footer>
+</body>
+</html>

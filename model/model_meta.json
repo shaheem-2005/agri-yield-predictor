@@ -1,0 +1,278 @@
+{
+  "model_version": "1.0.0",
+  "best_model": "Gradient Boosting Regressor",
+  "evaluation_metrics": [
+    {
+      "name": "Linear Regression",
+      "mae": 1.9542,
+      "rmse": 3.821,
+      "r2_score": 0.8124,
+      "training_time_ms": 12
+    },
+    {
+      "name": "Random Forest Regressor",
+      "mae": 0.8415,
+      "rmse": 1.6234,
+      "r2_score": 0.9418,
+      "training_time_ms": 145
+    },
+    {
+      "name": "Gradient Boosting Regressor",
+      "mae": 0.725,
+      "rmse": 1.411,
+      "r2_score": 0.9582,
+      "training_time_ms": 180
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "Rainfall",
+      "importance": 0.24,
+      "unit": "mm",
+      "impact": "Critical for photosynthesis and water uptake"
+    },
+    {
+      "feature": "Nitrogen (N)",
+      "importance": 0.21,
+      "unit": "kg/ha",
+      "impact": "Drives vegetative biomass and leaf area"
+    },
+    {
+      "feature": "Soil Moisture",
+      "importance": 0.16,
+      "unit": "%",
+      "impact": "Governs root nutrient bioavailability"
+    },
+    {
+      "feature": "Temperature",
+      "importance": 0.13,
+      "unit": "\u00b0C",
+      "impact": "Controls enzymatic rate & respiration"
+    },
+    {
+      "feature": "Potassium (K)",
+      "importance": 0.1,
+      "unit": "kg/ha",
+      "impact": "Improves drought and disease tolerance"
+    },
+    {
+      "feature": "Phosphorus (P)",
+      "importance": 0.08,
+      "unit": "kg/ha",
+      "impact": "Stimulates root architecture & early vigor"
+    },
+    {
+      "feature": "Soil pH",
+      "importance": 0.05,
+      "unit": "pH scale",
+      "impact": "Determines mineral solubility in soil solution"
+    },
+    {
+      "feature": "Humidity",
+      "importance": 0.03,
+      "unit": "%",
+      "impact": "Modulates transpiration and canopy microclimate"
+    }
+  ],
+  "crops": [
+    "Barley",
+    "Cotton",
+    "Groundnut",
+    "Maize",
+    "Potato",
+    "Rice",
+    "Soybean",
+    "Sugarcane",
+    "Tomato",
+    "Wheat"
+  ],
+  "crop_statistics": {
+    "Barley": {
+      "mean_yield": 3.32,
+      "std_yield": 0.64,
+      "min_yield": 1.85,
+      "max_yield": 4.15,
+      "feature_means": {
+        "soil_ph": 6.453333333333333,
+        "nitrogen": 84.4,
+        "phosphorus": 37.4,
+        "potassium": 34.2,
+        "temperature": 16.7,
+        "humidity": 48.78,
+        "rainfall": 454.0,
+        "soil_moisture": 35.71333333333334
+      },
+      "sample_count": 15
+    },
+    "Cotton": {
+      "mean_yield": 2.66,
+      "std_yield": 0.59,
+      "min_yield": 1.35,
+      "max_yield": 3.4,
+      "feature_means": {
+        "soil_ph": 6.419999999999999,
+        "nitrogen": 104.06666666666666,
+        "phosphorus": 46.13333333333333,
+        "potassium": 41.266666666666666,
+        "temperature": 30.086666666666666,
+        "humidity": 52.3,
+        "rainfall": 640.0,
+        "soil_moisture": 39.44666666666667
+      },
+      "sample_count": 15
+    },
+    "Groundnut": {
+      "mean_yield": 2.28,
+      "std_yield": 0.49,
+      "min_yield": 1.2,
+      "max_yield": 2.95,
+      "feature_means": {
+        "soil_ph": 6.246666666666667,
+        "nitrogen": 32.666666666666664,
+        "phosphorus": 50.333333333333336,
+        "potassium": 40.666666666666664,
+        "temperature": 27.10666666666667,
+        "humidity": 58.54666666666667,
+        "rainfall": 606.6666666666666,
+        "soil_moisture": 39.480000000000004
+      },
+      "sample_count": 15
+    },
+    "Maize": {
+      "mean_yield": 6.5,
+      "std_yield": 1.31,
+      "min_yield": 3.6,
+      "max_yield": 8.2,
+      "feature_means": {
+        "soil_ph": 6.366666666666668,
+        "nitrogen": 129.94444444444446,
+        "phosphorus": 59.111111111111114,
+        "potassium": 49.77777777777778,
+        "temperature": 24.450000000000003,
+        "humidity": 61.388888888888886,
+        "rainfall": 727.7777777777778,
+        "soil_moisture": 48.80555555555556
+      },
+      "sample_count": 18
+    },
+    "Potato": {
+      "mean_yield": 26.39,
+      "std_yield": 5.74,
+      "min_yield": 13.8,
+      "max_yield": 34.5,
+      "feature_means": {
+        "soil_ph": 5.906666666666666,
+        "nitrogen": 132.2,
+        "phosphorus": 74.4,
+        "potassium": 147.06666666666666,
+        "temperature": 17.27333333333333,
+        "humidity": 68.31333333333333,
+        "rainfall": 608.6666666666666,
+        "soil_moisture": 58.480000000000004
+      },
+      "sample_count": 15
+    },
+    "Rice": {
+      "mean_yield": 4.89,
+      "std_yield": 0.8,
+      "min_yield": 3.1,
+      "max_yield": 5.9,
+      "feature_means": {
+        "soil_ph": 6.378947368421053,
+        "nitrogen": 114.36842105263158,
+        "phosphorus": 46.421052631578945,
+        "potassium": 41.05263157894737,
+        "temperature": 27.789473684210527,
+        "humidity": 77.63157894736842,
+        "rainfall": 1377.3684210526317,
+        "soil_moisture": 67.52631578947368
+      },
+      "sample_count": 19
+    },
+    "Soybean": {
+      "mean_yield": 2.74,
+      "std_yield": 0.53,
+      "min_yield": 1.55,
+      "max_yield": 3.5,
+      "feature_means": {
+        "soil_ph": 6.4399999999999995,
+        "nitrogen": 37.2,
+        "phosphorus": 59.13333333333333,
+        "potassium": 49.4,
+        "temperature": 25.086666666666666,
+        "humidity": 63.81333333333334,
+        "rainfall": 678.3333333333334,
+        "soil_moisture": 46.96666666666667
+      },
+      "sample_count": 15
+    },
+    "Sugarcane": {
+      "mean_yield": 80.43,
+      "std_yield": 15.5,
+      "min_yield": 47.0,
+      "max_yield": 102.0,
+      "feature_means": {
+        "soil_ph": 6.38,
+        "nitrogen": 202.0,
+        "phosphorus": 98.6,
+        "potassium": 161.26666666666668,
+        "temperature": 28.986666666666668,
+        "humidity": 73.28,
+        "rainfall": 1703.3333333333333,
+        "soil_moisture": 65.36666666666666
+      },
+      "sample_count": 15
+    },
+    "Tomato": {
+      "mean_yield": 41.68,
+      "std_yield": 9.9,
+      "min_yield": 20.5,
+      "max_yield": 55.5,
+      "feature_means": {
+        "soil_ph": 6.193333333333333,
+        "nitrogen": 140.46666666666667,
+        "phosphorus": 78.0,
+        "potassium": 148.66666666666666,
+        "temperature": 22.086666666666666,
+        "humidity": 63.86000000000001,
+        "rainfall": 705.0,
+        "soil_moisture": 61.38
+      },
+      "sample_count": 15
+    },
+    "Wheat": {
+      "mean_yield": 4.04,
+      "std_yield": 0.69,
+      "min_yield": 2.5,
+      "max_yield": 4.9,
+      "feature_means": {
+        "soil_ph": 6.5210526315789465,
+        "nitrogen": 103.15789473684211,
+        "phosphorus": 41.1578947368421,
+        "potassium": 36.10526315789474,
+        "temperature": 17.747368421052634,
+        "humidity": 55.3421052631579,
+        "rainfall": 583.1578947368421,
+        "soil_moisture": 42.300000000000004
+      },
+      "sample_count": 19
+    }
+  },
+  "dataset_summary": {
+    "total_samples": 161,
+    "features_count": 9,
+    "target": "yield_tons_per_ha",
+    "columns": [
+      "crop",
+      "soil_ph",
+      "nitrogen",
+      "phosphorus",
+      "potassium",
+      "temperature",
+      "humidity",
+      "rainfall",
+      "soil_moisture",
+      "yield_tons_per_ha"
+    ]
+  }
+}

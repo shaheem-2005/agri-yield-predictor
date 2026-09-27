@@ -1,0 +1,6 @@
+{
+  "name": "Agri Yield Predictor",
+  "description": "AI-Based Crop Yield Forecasting System using soil and environmental parameters to estimate crop yield, total production, and agricultural insights.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

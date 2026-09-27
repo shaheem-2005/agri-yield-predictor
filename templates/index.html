@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Yield Predictor - AI-Based Crop Yield Forecasting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <span class="brand-icon">🌱</span>
+                <span class="brand-name">Agri Yield Predictor</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="/predict">Predict Yield</a>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/about">About Project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container hero-content">
+                <span class="hero-badge">Final-Year AI/ML Engineering Project</span>
+                <h1 class="hero-title">AI-Based Crop Yield Forecasting System</h1>
+                <p class="hero-subtitle">
+                    Empowering farmers and agronomists with precision machine learning. Forecast expected crop yields per hectare and total farm harvest based on soil chemistry, moisture, and microclimate parameters.
+                </p>
+                <div class="hero-actions">
+                    <a href="/predict" class="btn btn-primary">Start Yield Prediction →</a>
+                    <a href="/dashboard" class="btn btn-secondary">View Analytics Dashboard</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Core Agricultural Intelligence</h2>
+                    <p>Designed for decision support, risk reduction, and maximum agricultural productivity</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧪</div>
+                        <h3>Soil Chemistry Analysis</h3>
+                        <p>Evaluates Soil pH and Primary Macronutrients (Nitrogen N, Phosphorus P, Potassium K) to determine nutrient bioavailability.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌦️</div>
+                        <h3>Microclimate Modeling</h3>
+                        <p>Incorporates seasonal rainfall, ambient temperature, relative humidity, and real-time volumetric soil moisture content.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Multi-Model ML Engine</h3>
+                        <p>Trained and compared across Linear Regression, Random Forest, and Gradient Boosting Regressors using genuine R², MAE, and RMSE metrics.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Persistent History & Insights</h3>
+                        <p>Stores all forecasts in an embedded SQLite database with historical harvest yield trends and factor importance analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-summary-section">
+            <div class="container">
+                <div class="about-card">
+                    <h2>About The Project</h2>
+                    <p>
+                        Crop yield estimation has historically been vulnerable to volatile weather patterns and unmonitored soil variations. <strong>Agri Yield Predictor</strong> models the non-linear biological response curves of 10 staple and commercial crops—including Rice, Wheat, Maize, Cotton, Sugarcane, Soybean, Potato, Groundnut, Tomato, and Barley.
+                    </p>
+                    <p class="disclaimer-text">
+                        <strong>Disclaimer:</strong> This prediction is an estimate based on available agricultural data and should be used as a decision-support tool, not as a guarantee of actual crop yield.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2026 Agri Yield Predictor · College / Final-Year AI/ML Project</p>
+            <p>Developed with Python, Flask, Scikit-learn & SQLite</p>
+        </div>
+    </footer>
+</body>
+</html>

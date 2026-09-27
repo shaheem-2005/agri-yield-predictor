@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Agri Yield Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="/" class="brand">
+                <span class="brand-icon">🌱</span>
+                <span class="brand-name">Agri Yield Predictor</span>
+            </a>
+            <nav class="nav-links">
+                <a href="/">Home</a>
+                <a href="/predict">Predict Yield</a>
+                <a href="/dashboard" class="active">Dashboard</a>
+                <a href="/about">About Project</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container py-8">
+        <div class="page-header flex-between">
+            <div>
+                <h1>Forecasting Dashboard & History</h1>
+                <p>Overview of historical predictions, model metrics, and crop yield analytics.</p>
+            </div>
+            <a href="/predict" class="btn btn-primary">+ New Prediction</a>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-label">Total Predictions</span>
+                <div class="stat-value">{{ total_predictions }}</div>
+                <span class="stat-note">Stored in SQLite Database</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Average Predicted Yield</span>
+                <div class="stat-value">{{ avg_yield }} <span class="stat-unit">t/ha</span></div>
+                <span class="stat-note">Across all crop inquiries</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Most Common Crop</span>
+                <div class="stat-value">{{ most_common_crop }}</div>
+                <span class="stat-note">Frequent query subject</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-label">Latest Predicted Yield</span>
+                <div class="stat-value">
+                    {% if latest %}
+                        {{ latest.predicted_yield }} <span class="stat-unit">t/ha</span>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </div>
+                <span class="stat-note">{% if latest %}{{ latest.crop }} on {{ latest.created_at }}{% else %}No predictions yet{% endif %}</span>
+            </div>
+        </div>
+
+        <!-- Model Evaluation Metrics Section -->
+        <div class="content-block my-6">
+            <h2>Machine Learning Benchmark & Performance</h2>
+            <p class="section-desc">Comparison of regression algorithms evaluated on the 80/20 train-test split.</p>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Model Architecture</th>
+                            <th>R² Score (Higher is better)</th>
+                            <th>MAE (Mean Absolute Error)</th>
+                            <th>RMSE (Root Mean Squared Error)</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in model_metrics %}
+                        <tr class="{% if m.name == 'Gradient Boosting Regressor' %}highlight-row{% endif %}">
+                            <td><strong>{{ m.name }}</strong></td>
+                            <td>{{ m.r2_score }}</td>
+                            <td>{{ m.mae }} t/ha</td>
+                            <td>{{ m.rmse }} t/ha</td>
+                            <td>
+                                {% if m.name == 'Gradient Boosting Regressor' %}
+                                    <span class="tag tag-success">Selected Model (Best)</span>
+                                {% else %}
+                                    <span class="tag tag-neutral">Evaluated</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Prediction History Table -->
+        <div class="content-block my-6">
+            <h2>Prediction History Records</h2>
+            <p class="section-desc">All historical estimates logged persistently in SQLite (<code>database/predictions.db</code>).</p>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Crop</th>
+                            <th>Area (ha)</th>
+                            <th>Soil (pH / N / P / K)</th>
+                            <th>Weather (Temp / Rain / Moisture)</th>
+                            <th>Predicted Yield</th>
+                            <th>Total Production</th>
+                            <th>Interpretation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in predictions %}
+                        <tr>
+                            <td class="text-sm">{{ p.created_at }}</td>
+                            <td><strong>{{ p.crop }}</strong></td>
+                            <td>{{ p.area_ha }}</td>
+                            <td class="text-sm">pH: {{ p.soil_ph }} | N: {{ p.nitrogen }} | P: {{ p.phosphorus }} | K: {{ p.potassium }}</td>
+                            <td class="text-sm">{{ p.temperature }}°C | {{ p.rainfall }}mm | {{ p.soil_moisture }}%</td>
+                            <td><strong>{{ p.predicted_yield }} t/ha</strong></td>
+                            <td>{{ p.total_production }} t</td>
+                            <td><span class="badge badge-sm badge-{{ p.interpretation|lower }}">{{ p.interpretation }}</span></td>
+                        </tr>
+                        {% endfor %}
+                        {% if not predictions %}
+                        <tr>
+                            <td colspan="8" class="text-center py-6 text-muted">No prediction records found. Go to "Predict Yield" to run your first forecast.</td>
+                        </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2026 Agri Yield Predictor · Final-Year College Project</p>
+        </div>
+    </footer>
+</body>
+</html>
